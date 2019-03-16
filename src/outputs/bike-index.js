@@ -6,8 +6,8 @@ import '../../vendor/cleanslate.css';
 export default class BikeIndex {
   static el;
 
-  static init() {
-    const component = <StolenWidget />;
+  static init(options) {
+    const widget = <StolenWidget {...options} />;
 
     function doRender() {
       if (BikeIndex.el) {
@@ -15,10 +15,7 @@ export default class BikeIndex {
       }
       const el = document.getElementById('bindex');
       el.setAttribute('class', 'cleanslate');
-      ReactDOM.render(
-        component,
-        el,
-      );
+      ReactDOM.render(widget, el);
       BikeIndex.el = el;
     }
     if (document.readyState === 'complete') {
