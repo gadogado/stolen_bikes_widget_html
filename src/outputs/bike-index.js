@@ -13,7 +13,7 @@ export default class BikeIndex {
       if (BikeIndex.el) {
         throw new Error('BikeIndex is already mounted');
       }
-      const el = document.getElementById('bindex');
+      const el = document.getElementById('binx-stolen-widget');
       el.setAttribute('class', 'cleanslate');
       ReactDOM.render(widget, el);
       BikeIndex.el = el;
