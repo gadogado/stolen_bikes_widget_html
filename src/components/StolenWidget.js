@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import searchIcon from '../icons/search.svg';
-import { fetchStolenNearby } from '../api';
 import List from './List';
 import NoResults from './NoResults';
+import { fetchStolenNearby, fetchStolenSerial } from '../api';
 import '../styles/stolen-widget.scss';
 
 const Loading = () => <div>Loading...</div>;
@@ -23,8 +23,8 @@ export default class StolenWidget extends Component {
 
   searchSerial = async () => {
     const { serialNumber } = this.state;
-
-    // this.setState({ recentStolen: false })
+    const { bikes: results } = await fetchStolenSerial(serialNumber);
+    this.setState({ recentStolen: false, results })
   };
 
   onClickSearch = e => {

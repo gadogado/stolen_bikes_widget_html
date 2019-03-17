@@ -1,4 +1,4 @@
-const STOLEN_API = `https://bikeindex.org/api/v2/bikes_search/stolen?per_page=10&widget_from=${
+const API_ENDPOINT = `https://bikeindex.org/api/v2/bikes_search/stolen?per_page=10&widget_from=${
   window.location.hostname
 }`;
 
@@ -12,9 +12,18 @@ const request = async url => {
   PUBLIC 
 */
 const fetchStolenNearby = async location => {
-  const url = `${STOLEN_API}&proximity=${location}&proximity_radius=100`;
+  const url = `${API_ENDPOINT}&proximity=${location}&proximity_radius=100`;
   const results = await request(url);
   return results;
 };
 
-export { fetchStolenNearby };
+const fetchStolenSerial = async serialNumber => {
+  const url = `${API_ENDPOINT}&serial=${serialNumber}`
+  const results = await request(url);
+  return results;
+}
+
+export { 
+  fetchStolenNearby,
+  fetchStolenSerial
+};
