@@ -3,7 +3,11 @@ import { formatDate } from '../utility';
 
 const List = ({ results, recentStolen, serialNumber }) => (
   /* 
-    TODO: setup maxHeight on <ul>
+    TODO: 
+    - setup maxHeight on <ul>
+    - loading
+    - localstorage cache
+    - css stripes
   */
 
   <Fragment>
