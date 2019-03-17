@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-
+import { formatDate } from '../utility';
 
 const List = ({ results, recentStolen, serialNumber }) => (
   /* 
@@ -34,7 +34,7 @@ const List = ({ results, recentStolen, serialNumber }) => (
                 <span> from {result.stolen_location} &mdash;</span> 
               }
               {result.date_stolen &&
-                <span className='date-stolen'>{result.date_stolen}</span>
+                <span className='date-stolen'> {formatDate(result.date_stolen)}</span>
               }
             </p>
             <p>

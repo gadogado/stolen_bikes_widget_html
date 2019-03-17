@@ -64,7 +64,6 @@ export default class StolenWidget extends Component {
         </form>
 
         <div className="binxcontainer" id="binx_list_container">
-
           {loading ? (
             <Loading />
           ) : noResults ? (

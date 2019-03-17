@@ -81,6 +81,7 @@
     "webpack-serve": "^1.0.4"
   },
   "dependencies": {
+    "dayjs": "^1.8.10",
     "prop-types": "^15.6.2",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
