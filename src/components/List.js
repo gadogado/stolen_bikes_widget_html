@@ -1,6 +1,9 @@
 import React from 'react';
 
 const List = ({ results }) => (
+  /* 
+    TODO: setup maxHeight on <ul>
+  */
   <div className="binxcontainer" id="binx_list_container">
     <ul>
       {results.map(result => {
