@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-const List = ({ results }) => (
+
+const List = ({ results, recentStolen, serialNumber }) => (
   /* 
     TODO: setup maxHeight on <ul>
   */
-  <div className="binxcontainer" id="binx_list_container">
+
+  <Fragment>
+    {!recentStolen && serialNumber && (
+      <h2 class="search-response-info">
+        Bikes with serial numbers matching <em>{serialNumber}</em>
+        <span>
+          ({results.length > 19 ? "many found, showing first 20" : `${results.length} found`})
+        </span>
+      </h2>
+    )}
     <ul>
       {results.map(result => {
         const link = `https://bikeindex.org/bikes/${result.id}`;
@@ -37,7 +47,7 @@ const List = ({ results }) => (
         );
       })}
     </ul>
-  </div>
+  </Fragment>
 );
 
 export default List;

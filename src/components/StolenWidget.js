@@ -11,6 +11,7 @@ export default class StolenWidget extends Component {
   state = {
     results: [],
     loading: true,
+    searchToken: '',
     serialNumber: '',
     recentStolen: true,
   }
@@ -22,9 +23,9 @@ export default class StolenWidget extends Component {
   }
 
   searchSerial = async () => {
-    const { serialNumber } = this.state;
+    const { searchToken: serialNumber } = this.state;
     const { bikes: results } = await fetchStolenSerial(serialNumber);
-    this.setState({ recentStolen: false, results })
+    this.setState({recentStolen: false, results, serialNumber})
   };
 
   onClickSearch = e => {
@@ -38,13 +39,13 @@ export default class StolenWidget extends Component {
   };
 
   onChangeSerial = e => {
-    const serialNumber = e.target.value;
-    this.setState({ serialNumber });
+    const searchToken = e.target.value;
+    this.setState({ searchToken });
   };
 
   render() {
     const { location } = this.props;
-    const { loading, serialNumber, results, recentStolen } = this.state;
+    const { loading, serialNumber, searchToken, results, recentStolen } = this.state;
     const noResults = !loading && results.length === 0 && (serialNumber || recentStolen);
 
     return (
@@ -52,7 +53,7 @@ export default class StolenWidget extends Component {
         <form className="topsearcher" onSubmit={this.onSubmitSearch}>
           <input
             type="text"
-            value={serialNumber}
+            value={searchToken}
             onChange={this.onChangeSerial}
             placeholder="Search for a serial number"
             disabled={loading}
@@ -63,6 +64,7 @@ export default class StolenWidget extends Component {
         </form>
 
         <div className="binxcontainer" id="binx_list_container">
+
           {loading ? (
             <Loading />
           ) : noResults ? (
@@ -71,13 +73,17 @@ export default class StolenWidget extends Component {
               serialNumber={serialNumber} 
             />
           ) : (
-            <List results={results} />
+            <List 
+              results={results} 
+              recentStolen={recentStolen} 
+              serialNumber={serialNumber} 
+            />
           )}
 
           {!loading && recentStolen && (
             <div className="widget-info">
               Recent reported stolen bikes 
-              {location && (<span> near <em>{location}</em></span>)}
+              {location && <span> near <em>{location}</em></span>}
             </div>
           )}
         </div>
