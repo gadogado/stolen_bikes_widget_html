@@ -1,5 +1,5 @@
 const defaultLocation = 'Portland, OR';
 
-export const Config = {
+export default {
   defaultLocation,
 };

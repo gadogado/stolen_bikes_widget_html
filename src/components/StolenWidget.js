@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import { fetchStolenNearby } from './api';
-import { Config } from './config';
-import './stolen-widget.scss';
+import Config from '../config';
+import searchIcon from '../icons/search.svg';
+import { fetchStolenNearby } from '../api';
+import List from './List';
+import '../styles/stolen-widget.scss';
 
 const Loading = () => <div>Loading...</div>;
 
@@ -9,7 +11,7 @@ export default class StolenWidget extends Component {
   state = {
     results: [],
     loading: true,
-    serialNumber: null,
+    serialNumber: '',
   };
 
   async componentDidMount() {
@@ -18,24 +20,44 @@ export default class StolenWidget extends Component {
     this.setState({ loading: false, results });
   }
 
+  searchSerial = async () => {
+    const { serialNumber } = this.state;
+    // TODO: search serial
+  };
+
+  onClickSearch = e => {
+    e.preventDefault();
+    this.searchSerial();
+  };
+
+  onSubmitSearch = e => {
+    e.preventDefault();
+    this.searchSerial();
+  };
+
+  onChangeSerial = e => {
+    const serialNumber = e.target.value;
+    this.setState({ serialNumber });
+  };
+
   render() {
-    const { loading } = this.state;
+    const { loading, serialNumber, results } = this.state;
     return loading ? (
       <Loading />
     ) : (
       <div id="stolen-widget">
-        <form className="topsearcher" id="binx_search_form">
+        <form className="topsearcher" onSubmit={this.onSubmitSearch}>
           <input
-            id="binx_search"
             type="text"
             placeholder="Search for a serial number"
+            value={this.serialNumber}
+            onChange={this.onChangeSerial}
           />
-          <input type="submit" id="binxformsubm" />
-          <a href="#" class="subm" id="binxformsubm_a">
-            <img src="search.svg" />
+          <a href="#" className="subm" onClick={this.onClickSearch}>
+            <img src={searchIcon} />
           </a>
         </form>
-        <div className="binxcontainer" id="binx_list_container" />
+        <List results={results} />
       </div>
     );
   }

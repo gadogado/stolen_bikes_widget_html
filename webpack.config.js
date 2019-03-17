@@ -25,6 +25,17 @@ const defaultConfig = {
         use: ['babel-loader'],
       },
       {
+        test: /\.(svg)$/,
+        use: [
+          {
+            loader: 'svg-url-loader',
+            options: {
+              noquotes: true,
+            },
+          },
+        ],
+      },
+      {
         test: /\.(scss|css)$/,
         use: [
           // fallback to style-loader in development
