@@ -50,7 +50,7 @@ export default class StolenWidget extends Component {
           <input
             type="text"
             placeholder="Search for a serial number"
-            value={this.serialNumber}
+            value={serialNumber}
             onChange={this.onChangeSerial}
           />
           <a href="#" className="subm" onClick={this.onClickSearch}>
