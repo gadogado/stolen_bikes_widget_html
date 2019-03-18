@@ -9,7 +9,7 @@ const formatDate = str => {
     ? 'Today'
     : date.isSame(yesterday, 'day')
       ? 'Yesterday'
-      : date.format('MMM DD YYYY');
+      : date.format('ddd MMM DD YYYY');
    return formattedDate;
 };
 
