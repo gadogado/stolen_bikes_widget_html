@@ -6,7 +6,6 @@ const List = ({ results, recentStolen, serialNumber, maxHeight }) => (
     TODO: 
     - loading
     - localstorage cache
-    - css stripes
   */
 
   <Fragment>
