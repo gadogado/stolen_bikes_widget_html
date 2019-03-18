@@ -2,19 +2,10 @@ import React, { Component } from 'react';
 import searchIcon from '../icons/search.svg';
 import List from './List';
 import NoResults from './NoResults';
+import Loading from './Loading';
 import { fetchStolenNearby, fetchStolenSerial } from '../api';
 import { headerHeight, defaultHeight } from '../utility';
-import { ClipLoader } from 'react-spinners';
 import '../styles/stolen-widget.scss';
-
-const Loading = () => (
-  <ClipLoader
-    sizeUnit={"px"}
-    size={100}
-    color={'#fff'}
-    loading={true}
-  />
-);
 
 export default class StolenWidget extends Component {
   state = {
@@ -32,9 +23,10 @@ export default class StolenWidget extends Component {
   }
 
   searchSerial = async () => {
+    this.setState({loading: true})
     const { searchToken: serialNumber } = this.state;
     const { bikes: results } = await fetchStolenSerial(serialNumber);
-    this.setState({recentStolen: false, results, serialNumber})
+    this.setState({recentStolen: false, loading: false, results, serialNumber})
   };
 
   onClickSearch = e => {
