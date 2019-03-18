@@ -4,7 +4,7 @@ import List from './List';
 import NoResults from './NoResults';
 import Loading from './Loading';
 import { fetchStolenNearby, fetchStolenSerial } from '../api';
-import { headerHeight, defaultHeight } from '../utility';
+import { headerHeight, defaultHeight, cacheExpiry } from '../utility';
 import '../styles/stolen-widget.scss';
 
 export default class StolenWidget extends Component {
@@ -17,8 +17,28 @@ export default class StolenWidget extends Component {
   }
 
   async componentDidMount() {
-    const { location } = this.props;
-    const { bikes: results } = await fetchStolenNearby(location);
+    let results;
+    const { location, cacheResults } = this.props;
+    
+    if (cacheResults) {
+      const cacheKey = `recentStolen-${location}`;
+      const cached = JSON.parse(localStorage.getItem(cacheKey));
+      const now = new Date().getTime();
+      const expires = (now + cacheExpiry);
+      const expiredAt = cached ? cached.expires : 0;
+
+      if (now > expiredAt) {
+        const { bikes } = await fetchStolenNearby(location);
+        results = bikes;
+        const newCache = JSON.stringify({results, expires})
+        localStorage.setItem(cacheKey, newCache);
+      } else {
+        results = cached.results;
+      }
+    } else {
+      const { bikes } = await fetchStolenNearby(location);
+      results = bikes;
+    }
     this.setState({ loading: false, results });
   }
 

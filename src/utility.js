@@ -1,5 +1,9 @@
 import dayjs from 'dayjs';
 
+const defaultHeight = 400;
+const headerHeight = 41;
+const cacheExpiry = 10800000;
+
 const formatDate = str => {
   const date = dayjs.unix(str);
   const today = dayjs().startOf('day');
@@ -13,11 +17,9 @@ const formatDate = str => {
    return formattedDate;
 };
 
-const defaultHeight = 400;
-const headerHeight = 41;
-
 export {
   formatDate,
   defaultHeight,
-  headerHeight
+  headerHeight,
+  cacheExpiry
 };
