@@ -4,9 +4,17 @@ import List from './List';
 import NoResults from './NoResults';
 import { fetchStolenNearby, fetchStolenSerial } from '../api';
 import { headerHeight, defaultHeight } from '../utility';
+import { ClipLoader } from 'react-spinners';
 import '../styles/stolen-widget.scss';
 
-const Loading = () => <div>Loading...</div>;
+const Loading = () => (
+  <ClipLoader
+    sizeUnit={"px"}
+    size={100}
+    color={'#fff'}
+    loading={true}
+  />
+);
 
 export default class StolenWidget extends Component {
   state = {
@@ -49,8 +57,6 @@ export default class StolenWidget extends Component {
     const { loading, serialNumber, searchToken, results, recentStolen } = this.state;
     const noResults = !loading && results.length === 0 && (serialNumber || recentStolen);
     const maxHeight = (parseInt(height) || defaultHeight) - headerHeight;
-
-    console.log("maxHeight", maxHeight);
 
     return (
       <div id="stolen-widget">

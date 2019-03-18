@@ -4,7 +4,6 @@ import { formatDate } from '../utility';
 const List = ({ results, recentStolen, serialNumber, maxHeight }) => (
   /* 
     TODO: 
-    - loading
     - localstorage cache
   */
 
