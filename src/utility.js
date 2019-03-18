@@ -10,10 +10,14 @@ const formatDate = str => {
     : date.isSame(yesterday, 'day')
       ? 'Yesterday'
       : date.format('MMM DD YYYY');
-  
    return formattedDate;
-}
+};
+
+const defaultHeight = 400;
+const headerHeight = 41;
 
 export {
-  formatDate
+  formatDate,
+  defaultHeight,
+  headerHeight
 };

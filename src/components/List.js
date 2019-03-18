@@ -1,10 +1,9 @@
 import React, { Fragment } from 'react';
 import { formatDate } from '../utility';
 
-const List = ({ results, recentStolen, serialNumber }) => (
+const List = ({ results, recentStolen, serialNumber, maxHeight }) => (
   /* 
     TODO: 
-    - setup maxHeight on <ul>
     - loading
     - localstorage cache
     - css stripes
@@ -19,7 +18,7 @@ const List = ({ results, recentStolen, serialNumber }) => (
         </span>
       </h2>
     )}
-    <ul>
+    <ul style={{ maxHeight }}>
       {results.map(result => {
         const link = `https://bikeindex.org/bikes/${result.id}`;
         return (

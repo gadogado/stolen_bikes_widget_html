@@ -3,6 +3,7 @@ import searchIcon from '../icons/search.svg';
 import List from './List';
 import NoResults from './NoResults';
 import { fetchStolenNearby, fetchStolenSerial } from '../api';
+import { headerHeight, defaultHeight } from '../utility';
 import '../styles/stolen-widget.scss';
 
 const Loading = () => <div>Loading...</div>;
@@ -44,9 +45,12 @@ export default class StolenWidget extends Component {
   };
 
   render() {
-    const { location } = this.props;
+    const { location, height } = this.props;
     const { loading, serialNumber, searchToken, results, recentStolen } = this.state;
     const noResults = !loading && results.length === 0 && (serialNumber || recentStolen);
+    const maxHeight = (parseInt(height) || defaultHeight) - headerHeight;
+
+    console.log("maxHeight", maxHeight);
 
     return (
       <div id="stolen-widget">
@@ -76,6 +80,7 @@ export default class StolenWidget extends Component {
               results={results} 
               recentStolen={recentStolen} 
               serialNumber={serialNumber} 
+              maxHeight={maxHeight}
             />
           )}
 

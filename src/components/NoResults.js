@@ -7,10 +7,7 @@ const NoResults = ({ recentStolen, serialNumber }) => (
       <div>
         <span>
           We're sorry! Something went wrong and we couldn't retrieve recent results!
-        </span>
-        <span>
           We're probably working on fixing this right now, send us an email at 
-          {" "}
           <a href="mailto:contact@bikeindex.org">contact@bikeindex.org</a> if the problem persists
         </span>
       </div>
