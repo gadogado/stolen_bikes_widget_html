@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Side by Side comparison</title>
+  </head>
+  <body>
+
+    <!-- New React Widget -->
+    <script src="./stolen-widget.js"></script>
+    <script>
+      BikeIndex.init({
+        location: 'Portland, OR',
+      });
+    </script>
+    
+    <!-- Old Coffeescript Widget -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="http://widget.bikeindex.org/include.js"></script>
+
+
+
+    <!-- Side by Side comparison -->
+    <div style="display: flex, align-items: 'center';">
+      <h3>New: React & Webpack</h3>
+      <div id="binx-stolen-widget"></div>
+    
+      <h3>Old: Coffeescript</h3>
+      <div id="binx_stolen_widget" data-location="Portland, OR"></div>
+    </div>
+  </body>
+</html>

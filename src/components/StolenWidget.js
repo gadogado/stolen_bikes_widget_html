@@ -18,7 +18,7 @@ export default class StolenWidget extends Component {
 
   async componentDidMount() {
     let results;
-    const { location, cacheResults } = this.props;
+    const { location, cacheResults = true } = this.props;
     
     if (!cacheResults) {
       ({ bikes: results } = await fetchStolenNearby(location));
