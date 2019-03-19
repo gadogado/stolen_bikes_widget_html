@@ -20,7 +20,9 @@ export default class StolenWidget extends Component {
     let results;
     const { location, cacheResults } = this.props;
     
-    if (cacheResults) {
+    if (!cacheResults) {
+      ({ bikes: results } = await fetchStolenNearby(location));
+    } else {
       const cacheKey = `recentStolen-${location}`;
       const cached = JSON.parse(localStorage.getItem(cacheKey));
       const now = new Date().getTime();
@@ -28,17 +30,14 @@ export default class StolenWidget extends Component {
       const expiredAt = cached ? cached.expires : 0;
 
       if (now > expiredAt) {
-        const { bikes } = await fetchStolenNearby(location);
-        results = bikes;
+        ({ bikes: results } = await fetchStolenNearby(location));
         const newCache = JSON.stringify({results, expires})
         localStorage.setItem(cacheKey, newCache);
       } else {
         results = cached.results;
       }
-    } else {
-      const { bikes } = await fetchStolenNearby(location);
-      results = bikes;
     }
+
     this.setState({ loading: false, results });
   }
 
@@ -113,4 +112,3 @@ export default class StolenWidget extends Component {
     );
   }
 }
-

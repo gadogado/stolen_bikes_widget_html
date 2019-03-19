@@ -2,11 +2,6 @@ import React, { Fragment } from 'react';
 import { formatDate } from '../utility';
 
 const List = ({ results, recentStolen, serialNumber, maxHeight }) => (
-  /* 
-    TODO: 
-    - localstorage cache
-  */
-
   <Fragment>
     {!recentStolen && serialNumber && (
       <h2 class="search-response-info">

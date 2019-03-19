@@ -4,7 +4,7 @@
 * `npm start`
 *  Visit [localhost](http://localhost:8080/)
 
-### Initialization
+### Initialization [WIP]
 
 ```
 // within a <script> tag:
@@ -14,7 +14,7 @@ BikeIndex.init({
 });
 ```
 
-OR with default location of `''`
+OR with defaults `''`
 
 ```
 BikeIndex.init();
