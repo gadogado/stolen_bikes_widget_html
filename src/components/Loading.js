@@ -10,10 +10,10 @@ const overrides = css`
 const Loading = () => (
   <ClipLoader
     css={overrides}
-    sizeUnit={"px"}
+    sizeUnit="px"
     size={20}
-    loading={true}
-    color={"white"}
+    loading
+    color="white"
   />
 );
 

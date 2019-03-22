@@ -19,9 +19,9 @@ export default class StolenWidget extends Component {
   async componentDidMount() {
     let results;
     const { location, cacheResults = true, recentResults = true } = this.props;
-    
+
     if (!recentResults) {
-      return this.setState({loading: false, recentStolen: false});
+      return this.setState({ loading: false, recentStolen: false });
     }
 
     if (!cacheResults) {
@@ -35,21 +35,23 @@ export default class StolenWidget extends Component {
 
       if (now > expiredAt) {
         ({ bikes: results } = await fetchStolenNearby(location));
-        const newCache = JSON.stringify({results, expires})
+        const newCache = JSON.stringify({ results, expires });
         localStorage.setItem(cacheKey, newCache);
       } else {
-        results = cached.results;
+        ({ results } = cached);
       }
     }
 
-    this.setState({ loading: false, results });
+    return this.setState({ loading: false, results });
   }
 
   searchSerial = async () => {
-    this.setState({loading: true})
+    this.setState({ loading: true });
     const { searchToken: serialNumber } = this.state;
     const { bikes: results } = await fetchStolenSerial(serialNumber);
-    this.setState({recentStolen: false, loading: false, results, serialNumber})
+    this.setState({
+      recentStolen: false, loading: false, results, serialNumber,
+    });
   };
 
   onClickSearch = e => {
@@ -69,9 +71,11 @@ export default class StolenWidget extends Component {
 
   render() {
     const { location, height } = this.props;
-    const { loading, serialNumber, searchToken, results, recentStolen } = this.state;
+    const {
+      loading, serialNumber, searchToken, results, recentStolen,
+    } = this.state;
     const noResults = !loading && results.length === 0 && (serialNumber || recentStolen);
-    const maxHeight = (parseInt(height) || defaultHeight) - headerHeight;
+    const maxHeight = (Number(height) || defaultHeight) - headerHeight;
 
     return (
       <div id="stolen-widget">
@@ -83,31 +87,31 @@ export default class StolenWidget extends Component {
             placeholder="Search for a serial number"
             disabled={loading}
           />
-          <a href="#" className="subm" onClick={this.onClickSearch}>
-            <img src={searchIcon} />
-          </a>
+          <button className="subm" type="submit" onClick={this.onClickSearch}>
+            <img alt="search" src={searchIcon} />
+          </button>
         </form>
 
         <div className="binxcontainer" id="binx_list_container">
           {loading ? (
             <Loading />
           ) : noResults ? (
-            <NoResults 
-              recentStolen={recentStolen} 
-              serialNumber={serialNumber} 
+            <NoResults
+              recentStolen={recentStolen}
+              serialNumber={serialNumber}
             />
           ) : (
-            <List 
-              results={results} 
-              recentStolen={recentStolen} 
-              serialNumber={serialNumber} 
+            <List
+              results={results}
+              recentStolen={recentStolen}
+              serialNumber={serialNumber}
               maxHeight={maxHeight}
             />
           )}
 
-          {!loading && recentStolen && (
+          {!loading && recentStolen && !noResults && (
             <div className="widget-info">
-              Recent reported stolen bikes 
+              Recent reported stolen bikes
               {location && <span> near <em>{location}</em></span>}
             </div>
           )}
