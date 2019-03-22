@@ -1,3 +1,4 @@
 node_modules
 coverage
 note
+.DS_Store

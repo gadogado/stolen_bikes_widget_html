@@ -92,6 +92,7 @@
     "react-spinners": "^0.5.3",
     "react-transition-group": "^2.5.2",
     "svg-url-loader": "^2.3.2",
+    "webpack-bundle-size-analyzer": "^3.0.0",
     "webpack-dev-middleware": "3.6.0"
   }
 }
