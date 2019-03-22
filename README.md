@@ -24,6 +24,8 @@ A few options for customization and configuration:
 | `height` | max-height for the widget in pixels | 400px |
 | `recentResults` | Boolean - whether or not it should fetch recent stolen bikes (it starts just as a search widget) | true |
 | `cacheResults` | Store recent results for three hours in localstorage | true |
+| `elementId` | the id of the div element for the widget | binx-stolen-widget |
+
 
 ### Examples
 
@@ -34,10 +36,11 @@ Set the options when configuring the widget within the script tag:
 
 <script>
   BikeIndex.init({
-    location: 'Portland, OR',
-    recentResults: true,
+    height: 400,
     cacheResults: true,
-    height: 400
+    recentResults: true,
+    location: 'Portland, OR',
+    elementId: 'some-other-id',
   });
 </script>
 ```

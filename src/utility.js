@@ -1,5 +1,6 @@
 import dayjs from 'dayjs';
 
+const defaultElementId = 'binx-stolen-widget';
 const defaultHeight = 400;
 const headerHeight = 41;
 const cacheExpiry = 10800000;
@@ -22,4 +23,5 @@ export {
   defaultHeight,
   headerHeight,
   cacheExpiry,
+  defaultElementId,
 };
