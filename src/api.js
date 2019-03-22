@@ -8,8 +8,8 @@ const request = async url => {
   return json;
 };
 
-/* 
-  PUBLIC 
+/*
+  PUBLIC
 */
 const fetchStolenNearby = async location => {
   const url = `${API_ENDPOINT}&proximity=${location}&proximity_radius=100`;
@@ -18,12 +18,12 @@ const fetchStolenNearby = async location => {
 };
 
 const fetchStolenSerial = async serialNumber => {
-  const url = `${API_ENDPOINT}&serial=${serialNumber}`
+  const url = `${API_ENDPOINT}&serial=${serialNumber}`;
   const results = await request(url);
   return results;
-}
+};
 
-export { 
+export {
   fetchStolenNearby,
-  fetchStolenSerial
+  fetchStolenSerial,
 };
