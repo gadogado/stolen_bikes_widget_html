@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import StolenWidget from '../components/StolenWidget';
-import '../../vendor/cleanslate.css';
 
 export default class BikeIndex {
   static el;
@@ -14,7 +13,6 @@ export default class BikeIndex {
         throw new Error('BikeIndex is already mounted');
       }
       const el = document.getElementById('binx-stolen-widget');
-      el.setAttribute('class', 'cleanslate');
       ReactDOM.render(widget, el);
       BikeIndex.el = el;
     }

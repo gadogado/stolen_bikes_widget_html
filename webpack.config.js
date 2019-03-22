@@ -1,6 +1,5 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const increaseSpecificity = require('postcss-increase-specificity');
 const JavaScriptObfuscator = require('webpack-obfuscator');
 
 const devMode = process.env.NODE_ENV !== 'production';
@@ -43,19 +42,6 @@ const defaultConfig = {
           'style-loader',
           'css-loader',
           'cssimportant-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              ident: 'postcss',
-              plugins: [
-                increaseSpecificity({
-                  stackableRoot: '.cleanslate',
-                  repeat: 1,
-                }),
-              ],
-              sourceMap: devMode,
-            },
-          },
           'sass-loader',
         ],
       },

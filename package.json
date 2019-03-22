@@ -75,7 +75,6 @@
     "node-sass": "^4.11.0",
     "postcss-increase-specificity": "^0.6.0",
     "postcss-loader": "^3.0.0",
-    "prettier": "1.16.4",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.0",
     "webpack": "^4.28.3",
@@ -85,8 +84,9 @@
   },
   "dependencies": {
     "dayjs": "^1.8.10",
+    "prettier": "^1.16.4",
     "prop-types": "^15.6.2",
-    "react": "^16.8.3",
+    "react": "^16.8.5",
     "react-dom": "^16.8.3",
     "react-spinners": "^0.5.3",
     "react-transition-group": "^2.5.2",
