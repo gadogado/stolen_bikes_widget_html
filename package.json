@@ -4,9 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "lint": "./node_modules/.bin/eslint src",
+    "prepush": "yarn run lint",
     "build": "NODE_ENV=production webpack-cli --mode production",
     "start": "webpack-serve --config ./webpack.config.js --mode development --open",
-    "test": "jest",
+    "test": "jest --coverage",
     "test-update-snapshots": "jest --updateSnapshot",
     "deploy": "npm run build && cp ./public/* ./dist/. && gh-pages -d dist"
   },
@@ -69,6 +71,7 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-react": "^7.12.3",
     "gh-pages": "^2.0.1",
+    "husky": "^1.3.1",
     "jest": "^23.6.0",
     "jest-cli": "^23.6.0",
     "mini-css-extract-plugin": "^0.5.0",
@@ -84,6 +87,7 @@
   },
   "dependencies": {
     "@emotion/core": "^10.0.9",
+    "cypress": "^3.2.0",
     "dayjs": "^1.8.10",
     "prettier": "^1.16.4",
     "prop-types": "^15.6.2",
