@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<StolenWidget /> shallow rendered matches the snapshot 1`] = `
+<div
+  id="stolen-widget"
+>
+  <form
+    className="topsearcher"
+    onSubmit={[Function]}
+  >
+    <input
+      disabled={true}
+      onChange={[Function]}
+      placeholder="Search for a serial number"
+      type="text"
+      value=""
+    />
+    <button
+      className="subm"
+      onClick={[Function]}
+      type="submit"
+    >
+      <img
+        alt="search"
+        src="test-file-stub"
+      />
+    </button>
+  </form>
+  <div
+    className="binxcontainer"
+    id="binx_list_container"
+  >
+    <Loading />
+  </div>
+</div>
+`;

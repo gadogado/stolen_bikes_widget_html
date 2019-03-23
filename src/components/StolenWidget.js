@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import searchIcon from '../icons/search.svg';
 import List from './List';
 import NoResults from './NoResults';
@@ -120,3 +121,10 @@ export default class StolenWidget extends Component {
     );
   }
 }
+
+StolenWidget.propTypes = {
+  cacheResults: PropTypes.bool,
+  recentResults: PropTypes.bool,
+  location: PropTypes.string,
+  height: PropTypes.number,
+};

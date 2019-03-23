@@ -7,8 +7,8 @@ export default class BikeIndex {
   static el;
 
   static init(options) {
-    const { elementId = defaultElementId } = options;
-    const widget = <StolenWidget {...options} />;
+    const { elementId = defaultElementId, ...rest } = options;
+    const widget = <StolenWidget {...rest} />;
 
     function doRender() {
       if (BikeIndex.el) {

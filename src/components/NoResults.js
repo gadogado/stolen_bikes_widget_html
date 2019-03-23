@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const NoResults = ({ recentStolen, serialNumber }) => (
   <div className="binx-stolen-widget-list">
@@ -19,5 +20,10 @@ const NoResults = ({ recentStolen, serialNumber }) => (
     </h2>
   </div>
 );
+
+NoResults.propTypes = {
+  recentStolen: PropTypes.bool,
+  serialNumber: PropTypes.string,
+};
 
 export default NoResults;

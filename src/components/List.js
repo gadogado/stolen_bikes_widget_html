@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import { formatDate } from '../utility';
 
 const List = ({
@@ -49,5 +50,12 @@ const List = ({
     </ul>
   </Fragment>
 );
+
+List.propTypes = {
+  results: PropTypes.arrayOf(PropTypes.object),
+  recentStolen: PropTypes.bool,
+  serialNumber: PropTypes.string,
+  maxHeight: PropTypes.number,
+};
 
 export default List;
