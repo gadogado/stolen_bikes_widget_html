@@ -13,7 +13,7 @@ All you need to do is include this HTML snippet where you would like the widget 
 And add this to the header of your page:
 
 ```html
-<script src="http://widget.bikeindex.org/include.js"></script>
+<script src="http://widget.bikeindex.org/stolen-widget.js"></script>
 ```
 
 ### Extra options
