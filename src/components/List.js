@@ -18,7 +18,7 @@ const List = ({
       {results.map(result => {
         const link = `https://bikeindex.org/bikes/${result.id}`;
         return (
-          <li className={result.stolen && 'stolen'}>
+          <li key={result.id} className={result.stolen && 'stolen'}>
             {result.thumb
               && (
               <a className="stolen-thumb" href={link} target="_blank" rel="noopener noreferrer">

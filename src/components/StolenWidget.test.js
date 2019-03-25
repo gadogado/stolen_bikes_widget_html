@@ -1,7 +1,10 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import StolenWidget from './StolenWidget';
+import * as api from '../api';
+
+jest.mock('../api');
 
 describe('<StolenWidget /> shallow rendered', () => {
   it('matches the snapshot', () => {
@@ -28,11 +31,6 @@ describe('<StolenWidget /> shallow rendered', () => {
     expect(props).toEqual(expected);
   });
 
-  it('is loading by default', () => {
-    const wrap = shallow(<StolenWidget />);
-    expect(wrap.state('loading')).toEqual(true);
-  });
-
   it('has a disabled search input', () => {
     const wrap = shallow(<StolenWidget />);
     expect(wrap.find('.topsearcher input').is('[disabled]')).toBe(true);
@@ -54,12 +52,27 @@ describe('<StolenWidget /> shallow rendered', () => {
     wrap.find('button').simulate('click', event);
     expect(instance.searchSerial).toHaveBeenCalled();
   });
+});
 
-  describe.skip('<StolenWidget /> mount', () => {
-    it.skip('has a disabled loading state after componentDidMount');
-    it.skip('has a list of recent stolen bikes');
-    it.skip('has a list of bikes with matching serial numbers');
-    it.skip('adjusts the height of the widget');
-    it.skip('displays a message for no results');
+describe('<StolenWidget /> mount rendering', () => {
+  it('matches the snapshot', () => {
+    const tree = mount(<StolenWidget />);
+    expect(toJson(tree)).toMatchSnapshot();
+  });
+
+  it('has nearby stolen bikes when recentResults is enabled', () => {
+    const wrap = mount(<StolenWidget recentResults />);
+    expect(wrap.state('results')).not.toHaveLength(0);
+  });
+
+  it('does not have nearby stolen bikes when recentResults is disabled', () => {
+    const wrap = mount(<StolenWidget recentResults={false} />);
+    expect(wrap.state('results')).toHaveLength(0);
+  });
+
+  it('uses the location option when searching', () => {
+    jest.spyOn(api, 'fetchStolenNearby');
+    mount(<StolenWidget location="Portland, OR" />);
+    expect(api.fetchStolenNearby).toHaveBeenCalledWith('Portland, OR');
   });
 });
