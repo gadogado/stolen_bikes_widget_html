@@ -2,7 +2,7 @@
 
 Alert people to recent thefts! Add a convenient way to search for stolen bikes right on your page.
 
-![Example widget display](screenshot.png)
+![Example widget display](screenshot.jpg)
 
 All you need to do is include this HTML snippet where you would like the widget to appear:
 
