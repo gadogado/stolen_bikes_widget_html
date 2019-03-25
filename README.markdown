@@ -54,8 +54,6 @@ Set the options when configuring the widget within the script tag:
 ```
 
 
-
-
 ## Running locally
 
 1.  Install dependencies
@@ -71,6 +69,17 @@ yarn start
 ```
   * This should open the widget in your browser [here](http://localhost:8080/)
 
+## Testing
+
+1. Run the script to lint and run the jest specs:
+
+```
+yarn test
+
+// OR
+
+yarn watch
+```
 
 
 
