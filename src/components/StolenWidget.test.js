@@ -3,6 +3,7 @@ import { shallow, mount } from 'enzyme';
 import toJson from 'enzyme-to-json';
 import StolenWidget from './StolenWidget';
 import * as api from '../api';
+import { headerHeight } from '../utility';
 
 jest.mock('../api');
 
@@ -74,5 +75,26 @@ describe('<StolenWidget /> mount rendering', () => {
     jest.spyOn(api, 'fetchStolenNearby');
     mount(<StolenWidget location="Portland, OR" />);
     expect(api.fetchStolenNearby).toHaveBeenCalledWith('Portland, OR');
+  });
+
+  it('searches for a matching serialNumber', () => {
+    const searchToken = '000111222aaa';
+    jest.spyOn(api, 'fetchStolenSerial');
+    const wrap = mount(<StolenWidget recentResults={false} />);
+    wrap.setState({ searchToken });
+    wrap.find('button').simulate('click');
+    expect(api.fetchStolenSerial).toHaveBeenCalledWith(searchToken);
+  });
+
+  it('caches results in localStorage', () => {
+    mount(<StolenWidget cacheResults location="Portland, OR" />);
+    expect(localStorage.setItem).toHaveBeenCalled();
+  });
+
+  it('sets the maxHeight of the list', () => {
+    const height = 200;
+    const wrap = mount(<StolenWidget height={height} />);
+    const expected = height - headerHeight;
+    expect(wrap.find('List').prop('maxHeight')).toEqual(expected);
   });
 });

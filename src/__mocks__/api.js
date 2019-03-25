@@ -25,7 +25,7 @@ const stolenNearby = {
 };
 
 const fetchStolenNearby = async () => new Promise(resolve => resolve(stolenNearby));
-const fetchStolenSerial = async () => new Promise(resolve => resolve({ bikes: [] }));
+const fetchStolenSerial = async () => new Promise(resolve => resolve(stolenNearby));
 
 export {
   fetchStolenNearby,
